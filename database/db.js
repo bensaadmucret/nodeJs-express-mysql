@@ -18,6 +18,7 @@ connection.connect(function (err) {
 
 module.exports = connection;
 
+connection.query('CREATE DATABASE IF NOT EXISTS crud_nodejs ');
 
 
 // create a table in MySQL
@@ -39,6 +40,18 @@ connection.query('CREATE TABLE IF NOT EXISTS tasks (id INT AUTO_INCREMENT PRIMAR
                 console.log('Error while performing Query.');
             }
     });
+
+
+//create a jointure tasks listes
+connection.query('CREATE TABLE IF NOT EXISTS tasks_listes (id INT AUTO_INCREMENT PRIMARY KEY, id_liste INT, id_task INT)',
+    function (err, rows, fields) {
+        if (!err) {
+            console.log('Table created successfully.');
+        } else {
+            console.log('Error while performing Query.');
+        }
+    });
+    
 
  /*  // insert data in table listes
 connection.query('INSERT INTO listes (name, description) VALUES ("Liste 1", "Liste 1")',

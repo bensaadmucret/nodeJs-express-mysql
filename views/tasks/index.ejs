@@ -1,7 +1,7 @@
 <%- include('../partials/header'); %>
   <body>
     <div class="container">
-      <h1>Toutes les listes</h1>
+      <h1>Toutes laches </h1>
       <% if(messages.error) { %>
         <div class="alert alert-danger" role="alert">
           <%= messages.error %>
@@ -18,7 +18,7 @@
           <ul class="nav nav-pills w-100">
             <li class="nav-link">Listes</li>
             <li class="nav-link ml-auto">
-              <a href="/liste/add" class="nav-link active">ajouté une liste</a>
+              <a href="tasks/add" class="nav-link active">ajouté une liste</a>
             </li>
           </ul>
         </div>
@@ -34,14 +34,16 @@
               </tr>
             </thead>
         <tbody>
-          <% data.forEach(function(liste) { %>
+          <% data.forEach(function(tasks) { %>
           <tr>
-            <td><%= liste.id %></td>
-            <td><%= liste.name %></td>
-            <td><%= liste.description %></td>
+            <td><%= tasks.id %></td>
+            <td><%= tasks.name %></td>
+            <td><%= tasks.description %></td>
+            <td><%= tasks.status%></td>
+            <td><%= tasks.liste%></td>
             <td>
-              <a href="/liste/edit/<%= liste.id %>" class="btn btn-primary">Editer</a>
-              <a href="/liste/delete/<%= liste.id %>" onclick="return confirm('Are you sure ?');" class="btn btn-danger">Supprimer</a>
+              <a href="tasks/edit/<%= tasks.id %>" class="btn btn-primary">Editer</a>
+              <a href="tasks/delete/<%= tasks.id %>" onclick="return confirm('Are you sure ?');" class="btn btn-danger">Supprimer</a>
             </td>
           </tr>
           <% }); %>

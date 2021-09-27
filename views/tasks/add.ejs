@@ -1,0 +1,50 @@
+<%- include('../partials/header'); %>
+  <body>
+    <div class="container">
+    <% if(messages.error) { %>
+    <div class="alert alert-danger" role="alert"><%= messages.error %></div>
+    <% } %> <% if(messages.success) { %>
+    <div class="alert alert-success" role="alert"><%= messages.success %></div>
+    <% } %>
+    <form action="tasks/add" method="POST">
+      <select class="form-control" id="project" name="project">
+        <% for(var i = 0; i < data.length; i++) { %>
+        <option value="<%= data[i].id %>"><%= data[i].name %></option>
+        <% } %>
+      </select>
+      <div class="form-group">
+        <label for="name">Nom</label>
+        <input
+          type="text"
+          class="form-control"
+          id="name"
+          placeholder="Nom"
+          name="name"
+          value=""
+        />
+      </div>
+      <div class="form-group">
+        <label for="description">Description</label>
+        <input
+          type="text"
+          class="form-control"
+          id="description"
+          placeholder="Description"
+          name="description"
+          value=""
+        />
+        <label for="status">Status</label>
+        <select class="form-control" id="status" name="status">
+          <option value="0">En cours</option>
+          <option value="1">Terminé</option>
+        </select>
+      </div>
+      
+
+      
+
+<button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    </div>
+  </body>
+</html>

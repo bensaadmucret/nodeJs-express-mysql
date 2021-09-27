@@ -1,3 +1,8 @@
+// Create a web application to manage multiple task lists.
+// It should be possible for us to read, create, update and delete (CRUD) lists. We will also need to be able to read, create, update, and delete tasks.
+// We want, of course, to be able to update the status of a task in order to know if it has been validated or not, but also to rename it.
+// Thus, a list will have a name and one or more associated tasks while a task will have a name and a status.
+
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
@@ -8,6 +13,7 @@ const connection = require('./database/db');
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const listesRouter = require('./routes/listes');
+const tasksRouter = require('./routes/tasks');
 console.log(listesRouter);
 const flash = require('express-flash');
 const session = require('express-session');
@@ -40,6 +46,19 @@ app.use(flash());
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/liste', listesRouter);
+app.use('/tasks', tasksRouter);
+
+app.get('/', (req, res) => {
+  res.render('index');
+});
+
+app.get('/liste', (req, res) => {
+  res.render('liste');
+});
+
+
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
